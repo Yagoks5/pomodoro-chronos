@@ -1,0 +1,18 @@
+.menuButton {
+  background: var(--primary);
+  color: var(--text-over-primary);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+  margin-top: -2rem;
+}
+
+.menuButton:hover {
+  background-color: #00d394;
+  transform: translateY(-2px);
+}
