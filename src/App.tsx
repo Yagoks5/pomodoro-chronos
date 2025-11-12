@@ -8,6 +8,7 @@ import Container from './components/Container';
 
 import Logo from './components/Logo';
 import Menu from './components/Menu';
+import CountDown from './components/Countdown';
 
 export default function App() {
   return (
@@ -18,6 +19,10 @@ export default function App() {
 
       <Container>
         <Menu />
+      </Container>
+
+      <Container>
+        <CountDown />
       </Container>
     </>
   );
