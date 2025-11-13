@@ -1,6 +1,6 @@
 import { HouseIcon, HistoryIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import { MenuButton } from '../MenuButton';
-import styles from './style.module.css';
+import styles from './styles.module.css';
 
 export default function Menu() {
   return (
