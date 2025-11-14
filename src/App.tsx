@@ -15,19 +15,11 @@ import DefaultButton from './components/DefaultButton';
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import Footer from './components/Footer';
 import Heading from './components/Heading';
-import { useState } from 'react';
 
 export default function App() {
-  const [numero, setNumero] = useState(0);
-
-  function handleClick() {
-    setNumero(prevState => prevState + 1); // guarda o valor anterior e soma 1
-  }
-
   return (
     <>
-      <Heading>Número: {numero}</Heading>
-      <button onClick={handleClick}>Aumenta</button>
+      <Heading> </Heading>
 
       <Container>
         <Logo></Logo>
@@ -45,11 +37,11 @@ export default function App() {
         <form className='form' action=''>
           <div className='formRow'>
             <DefaultInput
-              labelText={numero.toString()}
               id='meuInput'
               type='text'
               title='Titulo'
               placeholder='Digite algo'
+              labelText='task'
             />
           </div>
 
