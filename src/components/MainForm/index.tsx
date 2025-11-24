@@ -2,11 +2,50 @@ import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import Cycles from '../Cycles';
 import DefaultButton from '../DefaultButton';
 import DefaultInput from '../DefaultInput';
+import { useState } from 'react';
+import type { TaskModel } from '../../models/TaskModel';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { getNextCycle } from '../../utils/getNextCycle';
 
 export default function MainForm() {
+  const { state, setState } = useTaskContext();
+  const [taskName, setTaskName] = useState('');
+
+  const nextCycle = getNextCycle(state.currentCycle);
+  console.log(nextCycle, ' nextCycle');
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('Deu certo');
+
+    if (taskName.trim() === '') {
+      alert('Por favor, insira um nome para a tarefa.');
+      return;
+    }
+    console.log('Nova tarefa criada:', taskName);
+    setTaskName('');
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      duration: 1,
+      completed: false,
+      interruptDate: null,
+      type: 'workTime',
+    };
+
+    const secondsRemaing = newTask.duration * 60;
+
+    setState(prevState => ({
+      ...prevState,
+      config: { ...prevState.config },
+      activeTask: newTask,
+      currentCycle: nextCycle,
+      secondsRemaining: secondsRemaing,
+      formattedSecondsRemaining: '00:00',
+      tasks: [...prevState.tasks, newTask],
+    }));
   }
 
   return (
@@ -18,6 +57,8 @@ export default function MainForm() {
           title='Titulo'
           placeholder='Digite algo'
           labelText='task'
+          value={taskName}
+          onChange={e => setTaskName(e.target.value)}
         />
       </div>
 
