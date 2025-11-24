@@ -10,6 +10,7 @@ export default function Home() {
         <Container>
           <CountDown />
         </Container>
+
         <Container>
           <MainForm></MainForm>
         </Container>
