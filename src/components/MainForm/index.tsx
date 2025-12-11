@@ -67,7 +67,7 @@ export default function MainForm() {
         <p>Próximo intervalo é de 25min</p>
       </div>
 
-      {!(state.currentCycle > 0) && (
+      {state.currentCycle > 0 && (
         <div className='formRow'>
           <div>
             <Cycles></Cycles>
