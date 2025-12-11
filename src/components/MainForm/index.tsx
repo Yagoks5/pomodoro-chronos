@@ -49,6 +49,15 @@ export default function MainForm() {
     }));
   }
 
+  function handleInterruptTask() {
+    setState(prevState => ({
+      ...prevState,
+      activeTask: null,
+      secondsRemaining: 0,
+      formattedSecondsRemaining: '00:00',
+    }));
+  }
+
   return (
     <form onSubmit={handleCreateNewTask} className='form' action=''>
       <div className='formRow'>
@@ -60,6 +69,7 @@ export default function MainForm() {
           labelText='task'
           value={taskName}
           onChange={e => setTaskName(e.target.value)}
+          disabled={!!state.activeTask}
         />
       </div>
 
@@ -76,8 +86,23 @@ export default function MainForm() {
       )}
 
       <div className='formRow'>
-        <DefaultButton icon={<PlayCircleIcon />} color='green'></DefaultButton>
-        <DefaultButton icon={<StopCircleIcon />} color='red'></DefaultButton>
+        {!state.activeTask && (
+          <DefaultButton
+            type='submit'
+            icon={<PlayCircleIcon />}
+            color='green'
+            key='botao_submit'
+          ></DefaultButton>
+        )}
+        {!!state.activeTask && (
+          <DefaultButton
+            type='button'
+            onClick={handleInterruptTask}
+            icon={<StopCircleIcon />}
+            color='red'
+            key='botao_interrupt'
+          ></DefaultButton>
+        )}
       </div>
     </form>
   );
